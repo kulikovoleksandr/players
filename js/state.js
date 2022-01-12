@@ -31,4 +31,5 @@ for(let i = 0; i < 50; i++){
     state.push(new Player())
 }
 
+
 export default state;
