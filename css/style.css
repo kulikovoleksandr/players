@@ -1,0 +1,34 @@
+.show-buttons-grp {
+  text-align: center;
+  padding: 20px; 
+  display: flex;
+  justify-content: center;
+}
+
+.btn-group-vertical {
+  padding: 3px;
+}
+
+.btn {
+  margin: 5px;
+}
+
+#result-list {
+  width: 30%;
+  margin: auto;
+  
+}
+
+#result-list > p {
+  font-size: 1.1em;
+  text-align:center;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+#result-list > h6 {
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align:center;
+  margin-bottom: 1rem;
+}
