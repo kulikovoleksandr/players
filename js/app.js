@@ -1,22 +1,80 @@
 import State from "./state.js";
+const resultList = document.getElementById("result-list");
+const btnSmall = document.getElementById("btn-small");
+const btnTall = document.getElementById("btn-tall");
+const btnThin = document.getElementById("btn-thin");
+const btnFat = document.getElementById("btn-fat");
 
 const state = State;
 
-console.log(state);
+//сортировка по росту
+const sortedByHeight = _.sortBy(state, ["params.height"]); // мелкий > высокий
+const sortedByHeightReversed = _.reverse(_.sortBy(state, ["params.height"])); // высокий > мелкий
 
-const sortedByHeight = _.sortBy(state, ['params.height']);
-const sortedByWeight = _.sortBy(state, ['params.weight']);
-// хз как показать совпадения
+//показать мелких
+btnSmall.onclick = () => {
+  resultList.textContent = "";
+  const resultHeader = document.createElement("h6");
+  resultList.append(resultHeader);
+  resultHeader.textContent = "Cамый мелкий:";
+  for (let i = 0; i < sortedByHeight.length; i++) {
+    if (sortedByHeight[0].params.height === sortedByHeight[i].params.height) {
+      const newResultP = document.createElement("p");
+      newResultP.textContent = `${sortedByHeight[i].name}. Рост: ${sortedByHeight[i].params.height} см`;
+      resultList.append(newResultP);
+    }
+  }
+};
 
-const small = sortedByHeight[0]
-console.log(`Cамый мелкий: ${small.name}. Рост: ${small.params.height} см`)
+//показать высоких
+btnTall.onclick = () => {
+  resultList.textContent = "";
+  const resultHeader = document.createElement("h6");
+  resultList.append(resultHeader);
+  resultHeader.textContent = "Cамый высокий:";
+  for (let i = 0; i < sortedByHeight.length; i++) {
+    if (
+      sortedByHeightReversed[0].params.height ===
+      sortedByHeightReversed[i].params.height
+    ) {
+      const newResultP = document.createElement("p");
+      newResultP.textContent = `${sortedByHeightReversed[i].name}. Рост: ${sortedByHeightReversed[i].params.height} см`;
+      resultList.append(newResultP);
+    }
+  }
+};
 
-const tall = sortedByHeight.slice(-1)
-console.log(`Cамый высокий: ${tall[0].name}. Рост: ${tall[0].params.height} см`)
+//сортировка по весу
+const sortedByWeight = _.sortBy(state, ["params.weight"]); // худой > толстый
+const sortedByWeightReversed = _.reverse(_.sortBy(state, ["params.weight"])); // толстый > худой
 
-const thin = (sortedByWeight[0])
-console.log(`Cамый худой: ${thin.name}. Вес: ${thin.params.weight} кг`)
+//показать тощих
+btnThin.onclick = () => {
+  resultList.textContent = "";
+  const resultHeader = document.createElement("h6");
+  resultList.append(resultHeader);
+  resultHeader.textContent = "Cамый тощий:";
+  for (let i = 0; i < sortedByWeight.length; i++) {
+    if (sortedByWeight[0].params.weight === sortedByWeight[i].params.weight) {
+      const newResultP = document.createElement("p");
+      newResultP.textContent = `${sortedByWeight[i].name}. Вес: ${sortedByWeight[i].params.weight} кг`;
+      resultList.append(newResultP);
+    }
+  }
+};
 
-const fat = (sortedByWeight.slice(-1))
-console.log(`Cамый толстый: ${fat[0].name}. Вес: ${fat[0].params.weight} кг`)
 
+//показать толстых
+btnFat.onclick = () => {
+  resultList.textContent = "";
+  const resultHeader = document.createElement("h6");
+  resultList.append(resultHeader);
+  resultHeader.textContent = "Cамый толстый:";
+  for (let i = 0; i < sortedByWeightReversed.length; i++) {
+    if (sortedByWeightReversed[0].params.weight === sortedByWeightReversed[i].params.weight) {
+      const newResultP = document.createElement("p");
+      newResultP.textContent = `${sortedByWeightReversed[i].name}. Вес: ${sortedByWeightReversed[i].params.weight} кг`;
+      resultList.append(newResultP);
+    }
+  }
+};
