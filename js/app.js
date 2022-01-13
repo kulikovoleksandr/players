@@ -7,20 +7,6 @@ const btnFat = document.getElementById("btn-fat");
 
 const state = State;
 
-console.dir(state);
-
-//get maximum height
-let maxHeight = 0;
-for(let i = 0; i < state.length; i++){
-  if(state[i].params.height > maxHeight){
-    maxHeight = state[i].params.height;
-  } else {
-    maxHeight = maxHeight;
-  }
-}
-console.log(maxHeight);
-
-
 //сортировка по росту
 const sortedByHeight = _.sortBy(state, ["params.height"]); // мелкий > высокий
 const sortedByHeightReversed = _.reverse(_.sortBy(state, ["params.height"])); // высокий > мелкий
