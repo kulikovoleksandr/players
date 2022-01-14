@@ -16,64 +16,38 @@ let nestedSort =
     return a < b ? -sortOrder : a > b ? sortOrder : 0;
   };
 
-const startSort = (initialArray, prop1, paramKey, direction, newArray) => {
-  let sortingArray = [...initialArray];
-  sortingArray.sort(nestedSort(prop1, paramKey, direction));
-  for (let i = 0; i < sortingArray.length; i++) {
-    if (sortingArray[i].params[paramKey] === sortingArray[0].params[paramKey]) {
-      newArray.push(sortingArray[i]);
-    } 
-  }
-
-};
-
-const lowestPlayers = [];
-const highestPlayers = [];
-const smallestPlayers = [];
-const biggestPlayers = [];
-
-startSort(state, "params", "height", "asc", lowestPlayers);
-startSort(state, "params", "height", "desc", highestPlayers);
-startSort(state, "params", "weight", "asc", smallestPlayers);
-startSort(state, "params", "weight", "desc", biggestPlayers);
-
-const showBtnClickContent = (
-  descTxt,
-  sortParam,
-  sortParamTxt,
-  measure,
-  sortArray
-) => {
+const startSort = (initialArray, prop1, paramKey, direction, descTxt, sortParamTxt, measure) => {
   resultList.textContent = "";
   const resultHeader = document.createElement("h6");
   resultList.append(resultHeader);
   resultHeader.textContent = descTxt;
-
-  for (let i = 0; i < sortArray.length; i++) {
-    if (sortArray[0].params[sortParam] === sortArray[i].params[sortParam]) {
+  const result = []
+  let sortingArray = [...initialArray];
+  sortingArray.sort(nestedSort(prop1, paramKey, direction));
+  for (let i = 0; i < sortingArray.length; i++) {
+    if (sortingArray[i].params[paramKey] === sortingArray[0].params[paramKey]) {
+      result.push(sortingArray[i]);
       const newResultP = document.createElement("p");
-      newResultP.textContent = `${sortArray[i].name}. ${sortParamTxt} ${sortArray[i].params[sortParam]} ${measure}`;
+      newResultP.textContent = `${sortingArray[i].name}. ${sortParamTxt} ${sortingArray[i].params[paramKey]} ${measure}`;
       resultList.append(newResultP);
-    }
+    } 
   }
 };
 
-
-
 btnShowSmall.onclick = () => {
-  showBtnClickContent("Самый мелкий:", "height", "Рост:", "см", lowestPlayers);
+  startSort(state, "params", "height", "asc", "Самый мелкий:", "Рост:", "см");
 };
 
 btnShowTall.onclick = () => {
-  showBtnClickContent("Самый высокий:", "height", "Рост:", "см", highestPlayers);
+  startSort(state, "params", "height", "desc", "Самый высокий:", "Рост:", "см");
 };
 
 btnShowThin.onclick = () => {
-  showBtnClickContent("Самый тощий:", "weight", "Вес:", "кг", smallestPlayers);
+  startSort(state, "params", "weight", "asc", "Самый тощий:", "Вес:", "кг");
 };
 
 btnShowFat.onclick = () => {
-  showBtnClickContent("Самый толстый:", "weight", "Вес:", "кг", biggestPlayers);
+  startSort(state, "params", "weight", "desc", "Самый толстый:", "Вес:", "кг");
 };
 
 
