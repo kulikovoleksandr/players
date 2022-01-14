@@ -14,9 +14,7 @@ let maxHeight = 0;
 for(let i = 0; i < state.length; i++){
   if(state[i].params.height > maxHeight){
     maxHeight = state[i].params.height;
-  } else {
-    maxHeight = maxHeight;
-  }
+  } 
 }
 console.log(maxHeight);
 
