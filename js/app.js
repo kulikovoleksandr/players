@@ -8,27 +8,27 @@ const btnShowFat = document.getElementById("btn-fat");
 const state = State;
 
 let nestedSort =
-  (prop1, prop2 = null, direction = "asc") =>
+  (parentParamKey, searchParamKey = null, direction = "asc") =>
   (e1, e2) => {
-    const a = prop2 ? e1[prop1][prop2] : e1[prop1],
-      b = prop2 ? e2[prop1][prop2] : e2[prop1],
+    const a = searchParamKey ? e1[parentParamKey][searchParamKey] : e1[parentParamKey],
+      b = searchParamKey ? e2[parentParamKey][searchParamKey] : e2[parentParamKey],
       sortOrder = direction === "asc" ? 1 : -1;
     return a < b ? -sortOrder : a > b ? sortOrder : 0;
   };
 
-const startSort = (initialArray, prop1, paramKey, direction, descTxt, sortParamTxt, measure) => {
+const startSort = (initialArray, parentParamKey, searchParamKey, direction, descTxt, sortParamTxt, measure) => {
   resultList.textContent = "";
   const resultHeader = document.createElement("h6");
   resultList.append(resultHeader);
   resultHeader.textContent = descTxt;
   const result = []
   let sortingArray = [...initialArray];
-  sortingArray.sort(nestedSort(prop1, paramKey, direction));
+  sortingArray.sort(nestedSort(parentParamKey, searchParamKey, direction));
   for (let i = 0; i < sortingArray.length; i++) {
-    if (sortingArray[i].params[paramKey] === sortingArray[0].params[paramKey]) {
+    if (sortingArray[i].params[searchParamKey] === sortingArray[0].params[searchParamKey]) {
       result.push(sortingArray[i]);
       const newResultP = document.createElement("p");
-      newResultP.textContent = `${sortingArray[i].name}. ${sortParamTxt} ${sortingArray[i].params[paramKey]} ${measure}`;
+      newResultP.textContent = `${sortingArray[i].name}. ${sortParamTxt} ${sortingArray[i].params[searchParamKey]} ${measure}`;
       resultList.append(newResultP);
     } 
   }
