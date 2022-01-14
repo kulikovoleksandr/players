@@ -1,4 +1,3 @@
-//тест пуш 2
 import State from "./state.js";
 const resultList = document.getElementById("result-list");
 const btnSmall = document.getElementById("btn-small");
