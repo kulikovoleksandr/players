@@ -8,14 +8,14 @@ const btnFat = document.getElementById("btn-fat");
 const state = State;
 
 //sort function
-let nestedSort =
-  (prop1, prop2 = null, direction = "asc") =>
-  (e1, e2) => {
-    const a = prop2 ? e1[prop1][prop2] : e1[prop1],
-      b = prop2 ? e2[prop1][prop2] : e2[prop1],
-      sortOrder = direction === "asc" ? 1 : -1;
+let nestedSort = function (prop1, prop2 = null, direction = "asc") {
+  return function (e1, e2) {
+    const a = prop2 ? e1[prop1][prop2] : e1[prop1];
+    const b = prop2 ? e2[prop1][prop2] : e2[prop1];
+    const sortOrder = direction === "asc" ? 1 : -1;
     return a < b ? -sortOrder : a > b ? sortOrder : 0;
   };
+};
 
 //clone state array
 let heightLowToHigh = [...state];
