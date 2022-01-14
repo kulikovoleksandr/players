@@ -1,6 +1,6 @@
 function getRandomString(length) {
-  let randomChars = 'abcdefghijklmnopqrstuvwxyz';
-  let result = '';
+  let randomChars = "abcdefghijklmnopqrstuvwxyz";
+  let result = "";
   for (let i = 0; i < length; i++) {
     result += randomChars.charAt(
       Math.floor(Math.random() * randomChars.length)
@@ -10,10 +10,20 @@ function getRandomString(length) {
 }
 
 function getRandomNumber(min, max) {
-    let result;
-    result = Math.random() * (max - min) + min;
-    return Math.floor(result);
+  let result;
+  result = Math.random() * (max - min) + min;
+  return Math.floor(result);
 }
+
+//get random unsplash image
+async function renderItem() {
+  fetch(`https://source.unsplash.com/1600x900/?beach`).then((response) => {
+    console.log(response.url);
+  });
+}
+// for (let i = 0; i < 3; i++) {
+//   console.log(renderItem());
+// }
 
 class Player {
   constructor() {
@@ -27,9 +37,8 @@ class Player {
 
 let state = [];
 
-for(let i = 0; i < 50; i++){
-    state.push(new Player())
+for (let i = 0; i < 50; i++) {
+  state.push(new Player());
 }
-
 
 export default state;
