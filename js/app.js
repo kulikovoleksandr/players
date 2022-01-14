@@ -8,68 +8,57 @@ const btnFat = document.getElementById("btn-fat");
 const state = State;
 
 //sort function
-let nestedSort = (prop1, prop2 = null, direction = "asc") => (e1, e2) => {
-  const a = prop2 ? e1[prop1][prop2] : e1[prop1],
+let nestedSort =
+  (prop1, prop2 = null, direction = "asc") =>
+  (e1, e2) => {
+    const a = prop2 ? e1[prop1][prop2] : e1[prop1],
       b = prop2 ? e2[prop1][prop2] : e2[prop1],
-      sortOrder = direction === "asc" ? 1 : -1
-  return (a < b) ? -sortOrder : (a > b) ? sortOrder : 0;
-}
+      sortOrder = direction === "asc" ? 1 : -1;
+    return a < b ? -sortOrder : a > b ? sortOrder : 0;
+  };
 
 //clone state array
 let heightLowToHigh = [...state];
 let heightHighToLow = [...state];
+let weightLowToHigh = [...state];
+let weightHighToLow = [...state];
 
 //sort cloned states
 heightLowToHigh.sort(nestedSort("params", "height", "asc"));
 heightHighToLow.sort(nestedSort("params", "height", "desc"));
+weightLowToHigh.sort(nestedSort("params", "weight", "asc"));
+weightHighToLow.sort(nestedSort("params", "weight", "desc"));
 
 //get maximum and minimum height
 const lowest = heightLowToHigh[0].params.height;
 const highest = heightHighToLow[0].params.height;
+const smallest = weightLowToHigh[0].params.weight;
+const biggest = weightHighToLow[0].params.weight;
+
+const searchForParams = (array, paramKey, paramCriteria, newArray) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].params[paramKey] === paramCriteria) {
+      newArray.push(array[i]);
+    } else {
+      break;
+    }
+  }
+};
 
 //get lowest players
 const lowestPlayers = [];
-for(let i = 0; i < heightLowToHigh.length; i++){
-  if(heightLowToHigh[i].params.height === lowest){
-    lowestPlayers.push(heightLowToHigh[i]);
-  } else {
-    break;
-  }
-}
+searchForParams(heightLowToHigh, "height", lowest, lowestPlayers);
 
 //get highest players
 const highestPlayers = [];
-for(let i = 0; i < heightHighToLow.length; i++){
-  if(heightHighToLow[i].params.height === highest){
-    highestPlayers.push(heightHighToLow[i]);
-  } else {
-    break;
-  }
-}
+searchForParams(heightHighToLow, "height", highest, highestPlayers);
 
-console.log(`lowest height - ${lowest}`);
-console.log(`highest height - ${highest}`);
+//get smallest players
+const smallestPlayers = [];
+searchForParams(weightLowToHigh, "weight", smallest, smallestPlayers);
 
-console.log('\n"low to high" players:');
-console.dir(heightLowToHigh);
-
-console.log('\n"hight to low" players:');
-console.dir(heightHighToLow);
-
-console.log('\nlowest players:');
-console.dir(lowestPlayers);
-
-console.log('\nhighest players:');
-console.dir(highestPlayers);
-
-
-//сортировка по росту
-const sortedByHeight = _.sortBy(state, ["params.height"]); // мелкий > высокий
-const sortedByHeightReversed = _.reverse(_.sortBy(state, ["params.height"])); // высокий > мелкий
-
-//сортировка по весу
-const sortedByWeight = _.sortBy(state, ["params.weight"]); // худой > толстый
-const sortedByWeightReversed = _.reverse(_.sortBy(state, ["params.weight"])); // толстый > худой
+const biggestPlayers = [];
+searchForParams(weightHighToLow, "weight", biggest, biggestPlayers);
 
 const showBtnClickContent = (
   descTxt,
@@ -94,14 +83,14 @@ const showBtnClickContent = (
 
 //показать мелких
 btnSmall.onclick = () => {
-  showBtnClickContent("Cамый мелкий:", sortedByHeight, "height", "Рост:", "см");
+  showBtnClickContent("Самый мелкий:", lowestPlayers, "height", "Рост:", "см");
 };
 
 //показать высоких
 btnTall.onclick = () => {
   showBtnClickContent(
-    "Cамый высокий:",
-    sortedByHeightReversed,
+    "Самый высокий:",
+    highestPlayers,
     "height",
     "Рост:",
     "см"
@@ -110,16 +99,40 @@ btnTall.onclick = () => {
 
 //показать тощих
 btnThin.onclick = () => {
-  showBtnClickContent("Cамый тощий:", sortedByWeight, "weight", "Вес:", "кг");
+  showBtnClickContent("Самый тощий:", smallestPlayers, "weight", "Вес:", "кг");
 };
 
 //показать толстых
 btnFat.onclick = () => {
-  showBtnClickContent(
-    "Cамый тощий:",
-    sortedByWeightReversed,
-    "weight",
-    "Вес:",
-    "кг"
-  );
+  showBtnClickContent("Самый толстый:", biggestPlayers, "weight", "Вес:", "кг");
 };
+
+// log
+console.log(`lowest height - ${lowest}`);
+console.log(`highest height - ${highest}`);
+console.log(`lowest weight - ${smallest}`);
+console.log(`highest weight - ${biggest}`);
+
+console.log('\n"low to high height" players:');
+console.log(heightLowToHigh);
+
+console.log('\n"high to low height" players:');
+console.log(heightHighToLow);
+
+console.log('\n"low to high weight" players:');
+console.log(weightLowToHigh);
+
+console.log('\n"high to low weight" players:');
+console.log(weightHighToLow);
+
+console.log("\nlowest players:");
+console.log(lowestPlayers);
+
+console.log("\nhighest players:");
+console.log(highestPlayers);
+
+console.log("\nsmallest players:");
+console.log(smallestPlayers);
+
+console.log("\nbiggest players:");
+console.log(biggestPlayers);
