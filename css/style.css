@@ -17,11 +17,6 @@ img {
   margin: 5px;
 }
 
-/* #result-list {
-  padding-top: 20px;
-  width: 30%;
-  margin: auto;
-} */
 
 #result-list > p {
   font-size: 1.1em;
@@ -33,15 +28,10 @@ img {
 #result-list > h6 {
   font-size: 1.3em;
   font-weight: bold;
-  /* text-align: center; */
   margin-bottom: 1rem;
 }
 
-/* .input-group-full {
-  padding-top: 2rem;
-  margin: auto;
-  width: 25%;
-} */
+
 
 #search-direction {
   padding-top: 1.525rem;
