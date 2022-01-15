@@ -26,10 +26,21 @@ class Player {
 }
 
 let state = [];
+let testArrayOne = [];
+let testArrayTwo = [];
+
 
 for(let i = 0; i < 50; i++){
     state.push(new Player())
 }
 
+for(let i = 0; i < 40; i++){
+  testArrayOne.push(new Player())
+}
 
-export default state;
+for(let i = 0; i < 30; i++){
+  testArrayTwo.push(new Player())
+}
+
+export { state, testArrayOne, testArrayTwo };
+

@@ -1,37 +1,27 @@
-import State from "./state.js";
+import {state, testArrayOne, testArrayTwo} from "./state.js";
+
 const resultList = document.getElementById("result-list");
 const searchBtn = document.getElementById("search-btn");
-const state = State;
+
 const allArrays = [
-  { name: "state",
-    state: state
-  },
-  { name: "testArrayOne",
-    testArrayOne: [
-      { name: "John", property: { lastName: "J", age: 18 } },
-      { name: "Bob", property: { lastName: "B", age: 20 } },
-      { name: "Bill", property: { lastName: "L", age: 22 } },
-    ]
-  },
-  { name: "testArrayTwo",
-    testArrayTwo: [
-      { name: "John", property: { lastName: "J", age: 18 } },
-      { name: "Bob", property: { lastName: "B", age: 20 } },
-      { name: "Bill", property: { lastName: "L", age: 22 } },
-    ]
-  }
+  { name: "state", array: state },
+  { name: "testArrayOne", array: testArrayOne},
+  { name: "testArrayTwo", array: testArrayTwo}
 ];
+
+console.log(state)
+console.log(testArrayOne)
+console.log(testArrayTwo)
 
 let arraySelector = () => {
   const selectedArray = document.getElementById("array-name-test");
-  
   for (let i = 0; i < allArrays.length; i++) {
     const newOption = document.createElement("option");
-    selectedArray.append(newOption)
-    newOption.textContent = `${allArrays[i].name}`
-    //тут
+    selectedArray.append(newOption);
+    newOption.textContent = `${allArrays[i].name}`;
+    newOption.setAttribute("value", allArrays[i].name);
   }
-}
+};
 
 arraySelector();
 
@@ -81,8 +71,8 @@ const startSort = (
 };
 
 searchBtn.onclick = () => {
-  //const arrayName = document.getElementById("array-name").value;
-  const arrayNameTest = document.getElementById("array-name-test")
+  const arrayName = document.getElementById("array-name-test").value;
+  //const arrayNameTest = document.getElementById("array-name-test");
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
