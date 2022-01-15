@@ -1,13 +1,32 @@
-import State from "./state.js";
-import cards from "./cards.js";
+import {state, testArrayOne, testArrayTwo} from "./state.js";
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
 const searchBtn = document.getElementById("search-btn");
 
-const state = State;
+const allArrays = [
+  { name: "state", array: state },
+  { name: "testArrayOne", array: testArrayOne},
+  { name: "testArrayTwo", array: testArrayTwo}
+];
+
+console.log(state)
+console.log(testArrayOne)
+console.log(testArrayTwo)
 
 cards(state, searchResultList);
+
+let arraySelector = () => {
+  const selectedArray = document.getElementById("array-name-test");
+  for (let i = 0; i < allArrays.length; i++) {
+    const newOption = document.createElement("option");
+    selectedArray.append(newOption);
+    newOption.textContent = `${allArrays[i].name}`;
+    newOption.setAttribute("value", allArrays[i].name);
+  }
+};
+
+arraySelector();
 
 let nestedSort =
   (parentParamKey, searchParamKey = null, direction = "asc") =>
@@ -55,7 +74,8 @@ const startSort = (
 };
 
 searchBtn.onclick = () => {
-  const arrayName = document.getElementById("array-name").value;
+  const arrayName = document.getElementById("array-name-test").value;
+  //const arrayNameTest = document.getElementById("array-name-test");
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
