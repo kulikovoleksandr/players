@@ -28,6 +28,7 @@ async function renderItem() {
 class Player {
   constructor() {
     this.name = getRandomString(5);
+    this.photo = 'http://wow.blizzwiki.ru/images/2/2d/Illidan_Portrait.jpg';
     this.params = {
       height: getRandomNumber(160, 210),
       weight: getRandomNumber(70, 150),

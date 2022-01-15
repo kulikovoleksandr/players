@@ -15,35 +15,70 @@
     />
   </head>
   <body>
-    <div class="show-buttons-grp">
-      <div class="btn-group-vertical">
-        <button
-          type="button"
-          class="btn btn-outline-dark btn-lg"
-          id="btn-small"
-        >
-          Show small
-        </button>
-        <button type="button" class="btn btn-outline-dark btn-lg" id="btn-tall">
-          Show tall
-        </button>
-      </div>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="input-group-full">
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="array-name"
+                placeholder="Array name..."
+              />
+              <label for="floatingInput">Array name...</label>
+            </div>
 
-      <div class="btn-group-vertical">
-        <button type="button" class="btn btn-outline-dark btn-lg" id="btn-thin">
-          Show thin
-        </button>
-        <button type="button" class="btn btn-outline-dark btn-lg" id="btn-fat">
-          Show fat
-        </button>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="object-name"
+                placeholder="Object..."
+              />
+              <label for="floatingInput">Object...</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="search-param"
+                placeholder="Search parameter..."
+              />
+              <label for="floatingInput">Search parameter...</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <select
+                class="form-select"
+                id="search-direction"
+                aria-label="Floating label select example"
+              >
+                <option selected value="asc">
+                  Ascending (from low to high)
+                </option>
+                <option value="desc">Descending (from high to low)</option>
+              </select>
+              <label for="floatingSelect">Search direction...</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                id="measure"
+                placeholder="Measure (optional)..."
+              />
+              <label for="floatingInput">Measure (optional)...</label>
+            </div>
+
+            <button id="search-btn" class="btn btn-primary" type="button">
+              Search
+            </button>
+          </div>
+        </div>
+        <div class="col-md">
+          <div id="result-list"></div>
+          <div id="search-result" class="row g-4"></div>
+        </div>
       </div>
     </div>
-    
-    <div id="result-list">
-
-    </div> 
-
-    
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
