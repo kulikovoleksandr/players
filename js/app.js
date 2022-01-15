@@ -1,22 +1,39 @@
 import State from "./state.js";
 const resultList = document.getElementById("result-list");
 const searchBtn = document.getElementById("search-btn");
-
 const state = State;
+const allArrays = [
+  { name: "state",
+    state: state
+  },
+  { name: "testArrayOne",
+    testArrayOne: [
+      { name: "John", property: { lastName: "J", age: 18 } },
+      { name: "Bob", property: { lastName: "B", age: 20 } },
+      { name: "Bill", property: { lastName: "L", age: 22 } },
+    ]
+  },
+  { name: "testArrayTwo",
+    testArrayTwo: [
+      { name: "John", property: { lastName: "J", age: 18 } },
+      { name: "Bob", property: { lastName: "B", age: 20 } },
+      { name: "Bill", property: { lastName: "L", age: 22 } },
+    ]
+  }
+];
 
- const testArray1 = [
-   { name: "John",
-     property: { lastName: "J", age: 18 }
-   },
-   { name: "Bob",
-     property: { lastName: "B", age: 20 }
-   },
+let arraySelector = () => {
+  const selectedArray = document.getElementById("array-name-test");
+  
+  for (let i = 0; i < allArrays.length; i++) {
+    const newOption = document.createElement("option");
+    selectedArray.append(newOption)
+    newOption.textContent = `${allArrays[i].name}`
+    //тут
+  }
+}
 
-   { name: "Bill",
-     property: { lastName: "L", age: 22 }
-   }
-]; 
-console.log(testArray1)
+arraySelector();
 
 let nestedSort =
   (parentParamKey, searchParamKey = null, direction = "asc") =>
@@ -64,7 +81,8 @@ const startSort = (
 };
 
 searchBtn.onclick = () => {
-  const arrayName = document.getElementById("array-name").value;
+  //const arrayName = document.getElementById("array-name").value;
+  const arrayNameTest = document.getElementById("array-name-test")
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
