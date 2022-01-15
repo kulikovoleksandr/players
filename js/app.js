@@ -9,20 +9,6 @@ const state = State;
 
 cards(state, searchResultList);
 
- const testArray1 = [
-   { name: "John",
-     property: { lastName: "J", age: 18 }
-   },
-   { name: "Bob",
-     property: { lastName: "B", age: 20 }
-   },
-
-   { name: "Bill",
-     property: { lastName: "L", age: 22 }
-   }
-]; 
-console.log(testArray1)
-
 let nestedSort =
   (parentParamKey, searchParamKey = null, direction = "asc") =>
   (e1, e2) => {
