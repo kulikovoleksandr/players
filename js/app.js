@@ -1,8 +1,13 @@
 import State from "./state.js";
+import cards from "./cards.js";
+
 const resultList = document.getElementById("result-list");
+const searchResultList = document.getElementById("search-result");
 const searchBtn = document.getElementById("search-btn");
 
 const state = State;
+
+cards(state, searchResultList);
 
  const testArray1 = [
    { name: "John",

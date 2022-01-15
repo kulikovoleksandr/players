@@ -9,6 +9,10 @@
   padding: 3px;
 }
 
+img {
+  max-width: 100%;
+}
+
 .btn {
   margin: 5px;
 }
