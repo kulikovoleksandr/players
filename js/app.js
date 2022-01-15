@@ -1,4 +1,5 @@
 import {state, testArrayOne, testArrayTwo} from "./state.js";
+import cards from "./cards.js";
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
