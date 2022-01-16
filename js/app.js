@@ -1,6 +1,5 @@
-import {firstArray, secondArray, thirdArray} from "./state.js";
+import { firstArray, secondArray, thirdArray } from "./state.js";
 import cards from "./cards.js";
-
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
@@ -8,11 +7,9 @@ const searchBtn = document.getElementById("search-btn");
 
 const allArrays = [
   { name: "firstArray", firstArray },
-  { name: "secondArray", secondArray},
-  { name: "thirdArray", thirdArray}
+  { name: "secondArray", secondArray },
+  { name: "thirdArray", thirdArray },
 ];
-
-
 
 let arraySelector = () => {
   const selectedArray = document.getElementById("array-name-test");
@@ -21,7 +18,6 @@ let arraySelector = () => {
     selectedArray.append(newOption);
     newOption.textContent = `${allArrays[i].name}`;
     newOption.setAttribute("value", allArrays[i].name);
-    
   }
 };
 
@@ -65,13 +61,12 @@ const startSort = (
       sortingArray[0][parentParamKey][searchParamKey]
     ) {
       result.push(sortingArray[i]);
-      const newResultP = document.createElement("p");
-      newResultP.textContent = `${sortingArray[i].name}. ${sortingArray[i][parentParamKey][searchParamKey]} ${measure}`;
-      resultList.append(newResultP);
+      // const newResultP = document.createElement("p");
+      // newResultP.textContent = `${sortingArray[i].name}. ${sortingArray[i][parentParamKey][searchParamKey]} ${measure}`;
+      // resultList.append(newResultP);
     }
   }
 };
-
 
 searchBtn.onclick = () => {
   const arrayName = document.getElementById("array-name-test").value;
@@ -79,8 +74,10 @@ searchBtn.onclick = () => {
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
   const measure = document.getElementById("measure").value;
-
   startSort(eval(arrayName), objectName, searchParam, searchDirection, measure);
   cards(eval(arrayName), searchResultList);
 };
 
+window.onload = () => {
+  searchBtn.click();
+};
