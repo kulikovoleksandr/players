@@ -16,13 +16,20 @@ function getRandomNumber(min, max) {
 }
 
 class Player {
-  constructor(photo) {
+  constructor(photo, age = false) {
     this.name = getRandomString(5);
     this.photo = photo;
+    this.age = age;
     this.params = {
       height: getRandomNumber(160, 210),
       weight: getRandomNumber(70, 150),
     };
+    this.getAge();
+  }
+  getAge() {
+    if (this.age == true) {
+      this.params.age = getRandomNumber(15, 50);
+    }
   }
 }
 
@@ -30,18 +37,27 @@ let firstArray = [];
 let secondArray = [];
 let thirdArray = [];
 
-
 for (let i = 0; i < 50; i++) {
-  firstArray.push(new Player('http://wow.blizzwiki.ru/images/2/2d/Illidan_Portrait.jpg'));
+  firstArray.push(
+    new Player("http://wow.blizzwiki.ru/images/2/2d/Illidan_Portrait.jpg")
+  );
 }
 
-for(let i = 0; i < 20; i++){
-  secondArray.push(new Player('https://res.cloudinary.com/heroespatches/image/upload/v1483416716/hero/jaina.jpg'))
+for (let i = 0; i < 20; i++) {
+  secondArray.push(
+    new Player(
+      "https://res.cloudinary.com/heroespatches/image/upload/v1483416716/hero/jaina.jpg",
+      true
+    )
+  );
 }
 
-for(let i = 0; i < 10; i++){
-  thirdArray.push(new Player('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV3hUsDOQbiOByuMgPTXZNcOW8S2mbk8jaKA&usqp=CAU'))
+for (let i = 0; i < 10; i++) {
+  thirdArray.push(
+    new Player(
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV3hUsDOQbiOByuMgPTXZNcOW8S2mbk8jaKA&usqp=CAU"
+    )
+  );
 }
 
 export { firstArray, secondArray, thirdArray };
-
