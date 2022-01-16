@@ -17,18 +17,17 @@
   <body>
     <div class="container py-5">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 pb-5">
           <div class="input-group-full">
             <div class="form-floating mb-3">
               <select
                 class="form-select"
                 id="array-name-test"
                 aria-label="Floating label select example"
-              > 
-              </select>
+              ></select>
               <label for="floatingSelect">Select array...</label>
             </div>
-            
+
             <div class="form-floating mb-3">
               <input
                 class="form-control"
@@ -40,13 +39,11 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input
-                class="form-control"
-                id="search-param"
-                value="height"
-                placeholder="Search parameter..."
-              />
-              <label for="floatingInput">Search parameter...</label>
+              <select class="form-select" id="search-param">
+                <option value="height">Height</option>
+                <option value="weight">Weight</option>
+              </select>
+              <label for="search-param">Search parameter...</label>
             </div>
 
             <div class="form-floating mb-3">
