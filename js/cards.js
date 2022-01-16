@@ -9,6 +9,13 @@ export default (data, target) => {
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">Height: ${item.params.height}</p>
                     <p class="card-text">Weight: ${item.params.weight}</p>
+                    ${
+                      item.params.age
+                        ? '<p class="card-text">Age: ' +
+                          item.params.age +
+                          "</p>"
+                        : ""
+                    }
                 </div>
             </div>
             </div>
