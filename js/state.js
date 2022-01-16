@@ -36,22 +36,22 @@ class Player {
   }
 }
 
-let state = [];
-let testArrayOne = [];
-let testArrayTwo = [];
+let firstArray = [];
+let secondArray = [];
+let thirdArray = [];
 
 
 for (let i = 0; i < 50; i++) {
-  state.push(new Player());
+  firstArray.push(new Player());
 }
 
-for(let i = 0; i < 40; i++){
-  testArrayOne.push(new Player())
+for(let i = 0; i < 20; i++){
+  secondArray.push(new Player())
 }
 
-for(let i = 0; i < 30; i++){
-  testArrayTwo.push(new Player())
+for(let i = 0; i < 10; i++){
+  thirdArray.push(new Player())
 }
 
-export { state, testArrayOne, testArrayTwo };
+export { firstArray, secondArray, thirdArray };
 
