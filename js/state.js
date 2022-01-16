@@ -15,16 +15,6 @@ function getRandomNumber(min, max) {
   return Math.floor(result);
 }
 
-//get random unsplash image
-async function renderItem() {
-  fetch(`https://source.unsplash.com/1600x900/?beach`).then((response) => {
-    console.log(response.url);
-  });
-}
-// for (let i = 0; i < 3; i++) {
-//   console.log(renderItem());
-// }
-
 class Player {
   constructor() {
     this.name = getRandomString(5);
