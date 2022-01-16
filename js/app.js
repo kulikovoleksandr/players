@@ -1,9 +1,34 @@
 import { firstArray, secondArray, thirdArray } from "./state.js";
 import cards from "./cards.js";
 
+let paramListFirst = Object.keys(firstArray[1].params);
+let paramListSecond = Object.keys(secondArray[1].params);
+let paramListThird = Object.keys(thirdArray[1].params); 
+
+/* for (let i = 0; i < paramListFirst.length; i++) {
+  console.log(JSON.stringify(paramListFirst[i]))
+} */
+
+const addArrayProperty = () => {
+  const searchParam = document.getElementById("search-param")
+  
+  
+  for (let i = 0; i < paramListFirst.length; i++) {
+    const newOption = document.createElement("option");
+    searchParam.append(newOption);
+    let newProperty = JSON.stringify(paramListFirst[i])
+    console.log(newProperty)
+    newOption.textContent = newProperty;
+    newOption.setAttribute("value", newProperty);
+  }
+}
+
+addArrayProperty()
+
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
 const searchBtn = document.getElementById("search-btn");
+
 
 const allArrays = [
   { value: "firstArray", name: "Illidan", firstArray },
@@ -12,7 +37,7 @@ const allArrays = [
 ];
 
 let arraySelector = () => {
-  const selectedArray = document.getElementById("array-name-test");
+  const selectedArray = document.getElementById("array-name");
   for (let i = 0; i < allArrays.length; i++) {
     const newOption = document.createElement("option");
     selectedArray.append(newOption);
@@ -22,6 +47,11 @@ let arraySelector = () => {
 };
 
 arraySelector();
+
+
+
+
+
 
 let nestedSort =
   (parentParamKey, searchParamKey = null, direction = "asc") =>
@@ -69,7 +99,7 @@ const startSort = (
 };
 
 searchBtn.onclick = () => {
-  const arrayName = document.getElementById("array-name-test").value;
+  const arrayName = document.getElementById("array-name").value;
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
