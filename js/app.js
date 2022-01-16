@@ -6,9 +6,9 @@ const searchResultList = document.getElementById("search-result");
 const searchBtn = document.getElementById("search-btn");
 
 const allArrays = [
-  { name: "firstArray", firstArray },
-  { name: "secondArray", secondArray },
-  { name: "thirdArray", thirdArray },
+  { value: "firstArray", name: "Illidan", firstArray },
+  { value: "secondArray", name: "Jaina", secondArray },
+  { value: "thirdArray", name: "Arthas", thirdArray },
 ];
 
 let arraySelector = () => {
@@ -17,7 +17,7 @@ let arraySelector = () => {
     const newOption = document.createElement("option");
     selectedArray.append(newOption);
     newOption.textContent = `${allArrays[i].name}`;
-    newOption.setAttribute("value", allArrays[i].name);
+    newOption.setAttribute("value", allArrays[i].value);
   }
 };
 
@@ -52,20 +52,20 @@ const startSort = (
   } else sortDirection = "high to low";
   resultHeader.textContent = `Sorted ${sortDirection} by ${searchParamKey}`;
 
-  const result = [];
-  let sortingArray = [...initialArray];
-  sortingArray.sort(nestedSort(parentParamKey, searchParamKey, direction));
-  for (let i = 0; i < sortingArray.length; i++) {
-    if (
-      sortingArray[i][parentParamKey][searchParamKey] ===
-      sortingArray[0][parentParamKey][searchParamKey]
-    ) {
-      result.push(sortingArray[i]);
-      // const newResultP = document.createElement("p");
-      // newResultP.textContent = `${sortingArray[i].name}. ${sortingArray[i][parentParamKey][searchParamKey]} ${measure}`;
-      // resultList.append(newResultP);
-    }
-  }
+  // const result = [];
+  // let sortingArray = [...initialArray];
+  // sortingArray.sort(nestedSort(parentParamKey, searchParamKey, direction));
+  // for (let i = 0; i < sortingArray.length; i++) {
+  //   if (
+  //     sortingArray[i][parentParamKey][searchParamKey] ===
+  //     sortingArray[0][parentParamKey][searchParamKey]
+  //   ) {
+  //     result.push(sortingArray[i]);
+  //     // const newResultP = document.createElement("p");
+  //     // newResultP.textContent = `${sortingArray[i].name}. ${sortingArray[i][parentParamKey][searchParamKey]} ${measure}`;
+  //     // resultList.append(newResultP);
+  //   }
+  // }
 };
 
 searchBtn.onclick = () => {
@@ -73,9 +73,13 @@ searchBtn.onclick = () => {
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
-  const measure = document.getElementById("measure").value;
+  // const measure = document.getElementById("measure").value;
   startSort(eval(arrayName), objectName, searchParam, searchDirection, measure);
-  cards(eval(arrayName), searchResultList);
+
+  cards(
+    eval(arrayName).sort(nestedSort(objectName, searchParam, searchDirection)),
+    searchResultList
+  );
 };
 
 window.onload = () => {
