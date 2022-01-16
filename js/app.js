@@ -5,25 +5,17 @@ let paramListFirst = Object.keys(firstArray[1].params);
 let paramListSecond = Object.keys(secondArray[1].params);
 let paramListThird = Object.keys(thirdArray[1].params); 
 
-/* for (let i = 0; i < paramListFirst.length; i++) {
-  console.log(JSON.stringify(paramListFirst[i]))
-} */
-
-const addArrayProperty = () => {
+const addArrayProperty = (object) => {
   const searchParam = document.getElementById("search-param")
-  
-  
-  for (let i = 0; i < paramListFirst.length; i++) {
+    for (let i = 0; i < object.length; i++) {
     const newOption = document.createElement("option");
     searchParam.append(newOption);
-    let newProperty = JSON.stringify(paramListFirst[i])
-    console.log(newProperty)
-    newOption.textContent = newProperty;
-    newOption.setAttribute("value", newProperty);
+    newOption.textContent = object[i];
+    newOption.setAttribute("value", object[i]);
   }
 }
 
-addArrayProperty()
+addArrayProperty(paramListFirst)
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
