@@ -16,9 +16,9 @@ function getRandomNumber(min, max) {
 }
 
 class Player {
-  constructor() {
+  constructor(photo) {
     this.name = getRandomString(5);
-    this.photo = 'http://wow.blizzwiki.ru/images/2/2d/Illidan_Portrait.jpg';
+    this.photo = photo;
     this.params = {
       height: getRandomNumber(160, 210),
       weight: getRandomNumber(70, 150),
@@ -32,15 +32,15 @@ let thirdArray = [];
 
 
 for (let i = 0; i < 50; i++) {
-  firstArray.push(new Player());
+  firstArray.push(new Player('http://wow.blizzwiki.ru/images/2/2d/Illidan_Portrait.jpg'));
 }
 
 for(let i = 0; i < 20; i++){
-  secondArray.push(new Player())
+  secondArray.push(new Player('https://res.cloudinary.com/heroespatches/image/upload/v1483416716/hero/jaina.jpg'))
 }
 
 for(let i = 0; i < 10; i++){
-  thirdArray.push(new Player())
+  thirdArray.push(new Player('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV3hUsDOQbiOByuMgPTXZNcOW8S2mbk8jaKA&usqp=CAU'))
 }
 
 export { firstArray, secondArray, thirdArray };
