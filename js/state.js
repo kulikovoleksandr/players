@@ -15,6 +15,8 @@ function getRandomNumber(min, max) {
   return Math.floor(result);
 }
 
+
+
 class Player {
   constructor(photo, age = false) {
     this.name = getRandomString(5);
@@ -33,9 +35,13 @@ class Player {
   }
 }
 
+
+
 let firstArray = [];
 let secondArray = [];
 let thirdArray = [];
+
+
 
 for (let i = 0; i < 50; i++) {
   firstArray.push(
@@ -60,4 +66,22 @@ for (let i = 0; i < 10; i++) {
   );
 }
 
-export { firstArray, secondArray, thirdArray };
+const pushToArray = (arrayName, arrayNameString, wowName) => {
+  const newArray = {}
+  newArray.value = arrayNameString 
+   //TODO найти как перевести параметр в string с таким же именем
+  
+  newArray.name = wowName
+  newArray.array = arrayName
+  allArrays.push(newArray)
+}
+
+let allArrays = []
+
+pushToArray(firstArray, "firstArray", "Illidan")
+pushToArray(secondArray, "secondArray", "Jaina")
+pushToArray(thirdArray, "thirdArray", "Arthas")
+
+
+export { firstArray, secondArray, thirdArray, allArrays };
+

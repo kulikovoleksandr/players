@@ -1,32 +1,32 @@
-import { firstArray, secondArray, thirdArray } from "./state.js";
+import { firstArray, secondArray, thirdArray, allArrays } from "./state.js";
 import cards from "./cards.js";
-
-let paramListFirst = Object.keys(firstArray[1].params);
-let paramListSecond = Object.keys(secondArray[1].params);
-let paramListThird = Object.keys(thirdArray[1].params); 
-
-const addArrayProperty = (object) => {
-  const searchParam = document.getElementById("search-param")
-    for (let i = 0; i < object.length; i++) {
-    const newOption = document.createElement("option");
-    searchParam.append(newOption);
-    newOption.textContent = object[i];
-    newOption.setAttribute("value", object[i]);
-  }
-}
-
-addArrayProperty(paramListFirst)
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
 const searchBtn = document.getElementById("search-btn");
+const arrayName = document.getElementById("array-name");
 
+const addArrayProperty = () => {
+  let params;
+  for (let i = 0; i < allArrays.length; i++) {
+    if (arrayName.value === allArrays[i].value) {
+      params = Object.keys(allArrays[i].array[i].params);
+    }
+  }
 
-const allArrays = [
-  { value: "firstArray", name: "Illidan", firstArray },
-  { value: "secondArray", name: "Jaina", secondArray },
-  { value: "thirdArray", name: "Arthas", thirdArray },
-];
+  const searchParam = document.getElementById("search-param");
+  searchParam.innerHTML = "";
+  for (let i = 0; i < params.length; i++) {
+    const newOption = document.createElement("option");
+    searchParam.append(newOption);
+    newOption.textContent = params[i];
+    newOption.setAttribute("value", params[i]);
+  }
+};
+
+arrayName.addEventListener("change", () => {
+  addArrayProperty();
+});
 
 let arraySelector = () => {
   const selectedArray = document.getElementById("array-name");
@@ -37,13 +37,6 @@ let arraySelector = () => {
     newOption.setAttribute("value", allArrays[i].value);
   }
 };
-
-arraySelector();
-
-
-
-
-
 
 let nestedSort =
   (parentParamKey, searchParamKey = null, direction = "asc") =>
@@ -58,13 +51,7 @@ let nestedSort =
     return a < b ? -sortOrder : a > b ? sortOrder : 0;
   };
 
-const startSort = (
-  initialArray,
-  parentParamKey,
-  searchParamKey,
-  direction = "asc",
-  measure = ""
-) => {
+const sortedParamDirectionTxt = (searchParamKey, direction = "asc") => {
   resultList.textContent = "";
   const resultHeader = document.createElement("h6");
   resultList.append(resultHeader);
@@ -73,37 +60,24 @@ const startSort = (
     sortDirection = "low to high";
   } else sortDirection = "high to low";
   resultHeader.textContent = `Sorted ${sortDirection} by ${searchParamKey}`;
-
-  // const result = [];
-  // let sortingArray = [...initialArray];
-  // sortingArray.sort(nestedSort(parentParamKey, searchParamKey, direction));
-  // for (let i = 0; i < sortingArray.length; i++) {
-  //   if (
-  //     sortingArray[i][parentParamKey][searchParamKey] ===
-  //     sortingArray[0][parentParamKey][searchParamKey]
-  //   ) {
-  //     result.push(sortingArray[i]);
-  //     // const newResultP = document.createElement("p");
-  //     // newResultP.textContent = `${sortingArray[i].name}. ${sortingArray[i][parentParamKey][searchParamKey]} ${measure}`;
-  //     // resultList.append(newResultP);
-  //   }
-  // }
 };
 
 searchBtn.onclick = () => {
-  const arrayName = document.getElementById("array-name").value;
   const objectName = document.getElementById("object-name").value;
   const searchParam = document.getElementById("search-param").value;
   const searchDirection = document.getElementById("search-direction").value;
-  // const measure = document.getElementById("measure").value;
-  startSort(eval(arrayName), objectName, searchParam, searchDirection, measure);
+  sortedParamDirectionTxt(searchParam, searchDirection);
 
   cards(
-    eval(arrayName).sort(nestedSort(objectName, searchParam, searchDirection)),
+    eval(arrayName.value).sort(
+      nestedSort(objectName, searchParam, searchDirection)
+    ),
     searchResultList
   );
 };
 
 window.onload = () => {
+  arraySelector();
+  addArrayProperty();
   searchBtn.click();
 };
