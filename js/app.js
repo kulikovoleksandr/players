@@ -55,7 +55,7 @@ const sortedParamDirectionTxt = (searchParamKey, direction = "asc") => {
   if (direction === "asc") {
     sortDirection = "low to high";
   } else sortDirection = "high to low";
-  resultHeader.textContent = `Sorted ${sortDirection} by ${searchParamKey}`;
+  resultHeader.innerHTML = `<small>sorted</small> <b>${sortDirection}</b> <small>by</small> <b>${searchParamKey}</b>`;
 };
 
 const startSort = () => {
