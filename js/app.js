@@ -84,10 +84,5 @@ searchDirection.addEventListener("change", () => {
 window.onload = () => {
   arraySelector();
   addArrayProperty();
-  cards(
-    eval(arrayName.value).sort(
-      nestedSort("params", searchParam.value, searchDirection.value)
-    ),
-    searchResultList
-  );
+  startSort();
 };
