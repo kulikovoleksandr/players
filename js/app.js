@@ -3,8 +3,10 @@ import cards from "./cards.js";
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
-const searchBtn = document.getElementById("search-btn");
-const arrayName = document.getElementById("array-name");
+const arrayName = document.getElementById("array-name"); 
+const searchParam = document.getElementById("search-param"); 
+const searchDirection = document.getElementById("search-direction"); 
+
 
 const addArrayProperty = () => {
   let params;
@@ -14,7 +16,6 @@ const addArrayProperty = () => {
     }
   }
 
-  const searchParam = document.getElementById("search-param");
   searchParam.innerHTML = "";
   for (let i = 0; i < params.length; i++) {
     const newOption = document.createElement("option");
@@ -23,10 +24,6 @@ const addArrayProperty = () => {
     newOption.setAttribute("value", params[i]);
   }
 };
-
-arrayName.addEventListener("change", () => {
-  addArrayProperty();
-});
 
 let arraySelector = () => {
   const selectedArray = document.getElementById("array-name");
@@ -62,22 +59,37 @@ const sortedParamDirectionTxt = (searchParamKey, direction = "asc") => {
   resultHeader.textContent = `Sorted ${sortDirection} by ${searchParamKey}`;
 };
 
-searchBtn.onclick = () => {
-  const objectName = document.getElementById("object-name").value;
-  const searchParam = document.getElementById("search-param").value;
-  const searchDirection = document.getElementById("search-direction").value;
-  sortedParamDirectionTxt(searchParam, searchDirection);
-
+const startSort = () => {
+  sortedParamDirectionTxt(searchParam.value, searchDirection.value);
   cards(
-    eval(arrayName.value).sort(
-      nestedSort(objectName, searchParam, searchDirection)
-    ),
-    searchResultList
-  );
-};
+  eval(arrayName.value).sort(
+    nestedSort("params", searchParam.value, searchDirection.value)
+  ),
+  searchResultList
+);
+}
+
+arrayName.addEventListener("change", () => {
+  addArrayProperty();
+  startSort()
+});
+
+searchParam.addEventListener("change", () => {
+  startSort()
+})
+
+searchDirection.addEventListener("change", () => {
+  startSort()
+})
+ 
 
 window.onload = () => {
   arraySelector();
   addArrayProperty();
-  searchBtn.click();
-};
+  cards(
+    eval(arrayName.value).sort(
+      nestedSort("params", searchParam.value, searchDirection.value)
+    ),
+    searchResultList)
+  
+}
