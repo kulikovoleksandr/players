@@ -69,7 +69,7 @@ for (let i = 0; i < 10; i++) {
 const pushToArray = (arrayName, arrayNameString, wowName) => {
   const newArray = {}
   newArray.value = arrayNameString 
-   //TODO найти как перевести параметр в string с таким же именем
+   //TODO найти как перевести параметр в string с таким же именем (чтоб использовать только первый аргумент)
   
   newArray.name = wowName
   newArray.array = arrayName
