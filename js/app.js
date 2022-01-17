@@ -3,10 +3,9 @@ import cards from "./cards.js";
 
 const resultList = document.getElementById("result-list");
 const searchResultList = document.getElementById("search-result");
-const arrayName = document.getElementById("array-name"); 
-const searchParam = document.getElementById("search-param"); 
-const searchDirection = document.getElementById("search-direction"); 
-
+const arrayName = document.getElementById("array-name");
+const searchParam = document.getElementById("search-param");
+const searchDirection = document.getElementById("search-direction");
 
 const addArrayProperty = () => {
   let params;
@@ -62,26 +61,25 @@ const sortedParamDirectionTxt = (searchParamKey, direction = "asc") => {
 const startSort = () => {
   sortedParamDirectionTxt(searchParam.value, searchDirection.value);
   cards(
-  eval(arrayName.value).sort(
-    nestedSort("params", searchParam.value, searchDirection.value)
-  ),
-  searchResultList
-);
-}
+    eval(arrayName.value).sort(
+      nestedSort("params", searchParam.value, searchDirection.value)
+    ),
+    searchResultList
+  );
+};
 
 arrayName.addEventListener("change", () => {
   addArrayProperty();
-  startSort()
+  startSort();
 });
 
 searchParam.addEventListener("change", () => {
-  startSort()
-})
+  startSort();
+});
 
 searchDirection.addEventListener("change", () => {
-  startSort()
-})
- 
+  startSort();
+});
 
 window.onload = () => {
   arraySelector();
@@ -90,6 +88,6 @@ window.onload = () => {
     eval(arrayName.value).sort(
       nestedSort("params", searchParam.value, searchDirection.value)
     ),
-    searchResultList)
-  
-}
+    searchResultList
+  );
+};
