@@ -66,21 +66,19 @@ for (let i = 0; i < 10; i++) {
   );
 }
 
-const pushToArray = (arrayName, arrayNameString, wowName) => {
+const pushToArray = (arrayName, wowName) => {
   const newArray = {}
-  newArray.value = arrayNameString 
-   //TODO найти как перевести параметр в string с таким же именем (чтоб использовать только первый аргумент)
-  
+  newArray.value = arrayName //string 
   newArray.name = wowName
-  newArray.array = arrayName
+  newArray.array = eval(arrayName) //array
   allArrays.push(newArray)
 }
 
 let allArrays = []
 
-pushToArray(firstArray, "firstArray", "Illidan")
-pushToArray(secondArray, "secondArray", "Jaina")
-pushToArray(thirdArray, "thirdArray", "Arthas")
+pushToArray("firstArray", "Illidan")
+pushToArray("secondArray", "Jaina")
+pushToArray("thirdArray", "Arthas")
 
 
 export { firstArray, secondArray, thirdArray, allArrays };
